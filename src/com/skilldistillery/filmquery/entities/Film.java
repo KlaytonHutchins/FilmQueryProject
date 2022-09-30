@@ -11,6 +11,7 @@ public class Film {
 	private String description;
 	private int releaseYear;
 	private int languageId;
+	private String language;
 	private int rentalDuration;
 	private double rentalRate;
 	private int length;
@@ -19,20 +20,25 @@ public class Film {
 	private String specialFeatures;
 	private List<Actor> actors;
 
-	public Film() { }
+	public Film() {
+	}
 
-	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
-		this.id = id;
+	public Film(String title, int releaseYear, String rating, String description) {
 		this.title = title;
 		this.description = description;
 		this.releaseYear = releaseYear;
+		this.rating = rating;
+	}
+
+	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
+			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
+		this(title, releaseYear, rating, description);
+		this.id = id;
 		this.languageId = languageId;
 		this.rentalDuration = rentalDuration;
 		this.rentalRate = rentalRate;
 		this.length = length;
 		this.replacementCost = replacementCost;
-		this.rating = rating;
 		this.specialFeatures = specialFeatures;
 	}
 
@@ -123,7 +129,7 @@ public class Film {
 	public void setSpecialFeatures(String specialFeatures) {
 		this.specialFeatures = specialFeatures;
 	}
-	
+
 	public List<Actor> getActors() {
 		return actors;
 	}
@@ -157,10 +163,12 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "FILM:\nID: " + id + "\nTitle: " + title + "\nDescription: " + description + "\nRelease Year: " + releaseYear
-				+ "\nLanguage Id: " + languageId + "\nRental Duration: " + rentalDuration + "\nRental Rate: " + rentalRate
-				+ "\nLength: " + length + "\nReplacement Cost: " + replacementCost + "\nRating: " + rating
-				+ "\nSpecial Features: " + specialFeatures;
+		return "FILM:\nTitle: " + title + "\nRelease Year: " + releaseYear + "\nRating: " + rating + "\nDescription: "
+				+ description;
+//		return "FILM:\nID: " + id + "\nTitle: " + title + "\nDescription: " + description + "\nRelease Year: " + releaseYear
+//				+ "\nLanguage Id: " + languageId + "\nRental Duration: " + rentalDuration + "\nRental Rate: " + rentalRate
+//				+ "\nLength: " + length + "\nReplacement Cost: " + replacementCost + "\nRating: " + rating
+//				+ "\nSpecial Features: " + specialFeatures;
 	}
 
 }
