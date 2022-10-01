@@ -10,6 +10,7 @@ import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
 
+	boolean stillRunning = true;
 	DatabaseAccessor db = new DatabaseAccessorObject();
 
 	public static void main(String[] args) {
@@ -20,7 +21,7 @@ public class FilmQueryApp {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-    app.launch();
+		app.launch();
 	}
 
 	private void test() throws SQLException {
@@ -35,38 +36,44 @@ public class FilmQueryApp {
 	private void launch() {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Welcome to the Film Query App");
-		try {
-			startUserInterface(input);
-		} catch (SQLException e) {
-			
+		while (stillRunning) {
+			try {
+				startUserInterface(input);
+			} catch (SQLException e) {
+				System.err.println("Something went wrong...");
+			}
 		}
 
 		input.close();
 	}
 
 	private void startUserInterface(Scanner input) throws SQLException {
-		System.out.println("-----------------MENU-----------------");
-		System.out.println("1. Look up a film by its id.");
-		System.out.println("2. Look up a film by a search keyword.");
-		System.out.println("3. Exit the application.");
+		System.out.println("-------------------MENU-------------------");
+		System.out.println("| 1. Look up a film by its id.           |");
+		System.out.println("| 2. Look up a film by a search keyword. |");
+		System.out.println("| 3. Exit the application.               |");
+		System.out.println("------------------------------------------");
 		String menuSelection = input.nextLine();
 		switch (menuSelection) {
 		case "1":
 			System.out.print("Enter the id you would like to search: ");
 			Film film = db.findFilmById(input.nextInt());
 			input.nextLine();
-			System.out.println(film);
+			System.out.println("\n" + film + "\n");
 			break;
 		case "2":
 			System.out.print("Enter the keyword you would like to search: ");
 			List<Film> films = db.findFilmByKeyword(input.nextLine());
+			System.out.println("\n" + films.size() + " films found that matched your keyword.\n");
+			
 			for (Film aFilm : films) {
 				System.out.println(aFilm);
 				System.out.println();
 			}
 			break;
 		case "3":
-			
+			stillRunning = false;
+			System.out.println("Thanks for using the Film Query App");
 			break;
 		default:
 			break;
