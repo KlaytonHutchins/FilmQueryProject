@@ -53,46 +53,78 @@ public class FilmQueryApp {
 		System.out.println("-------------------MENU-------------------");
 		System.out.println("| 1. Look up a film by its id.           |");
 		System.out.println("| 2. Look up a film by a search keyword. |");
-		System.out.println("| 3. Exit the application.               |");
+		System.out.println("| 3. Look up an actor by id.             |");
+		System.out.println("| 4. Look up an actor by name.           |");
+		System.out.println("| 5. Exit the application.               |");
 		System.out.println("------------------------------------------");
 		String menuSelection = input.nextLine();
 		switch (menuSelection) {
 		case "1":
 			System.out.print("Enter the id you would like to search: ");
-			Film film = db.findFilmById(input.nextInt());
+			Film caseOneFilm = db.findFilmById(input.nextInt());
 			input.nextLine();
-			if (film == null) {
+			if (caseOneFilm == null) {
 				System.out.println("\nThat film does not exist\n");
 			} else {
-				System.out.println("\n" + film.toStringWithActors() + "\n");
+				System.out.println("\n" + caseOneFilm + "\n");
+				System.out.println("Actors:");
+				for (Actor caseOneActor : caseOneFilm.getActors()) {
+					System.out.println(caseOneActor.toStringIndented());
+				}
+				System.out.println();
 			}
 			break;
 		case "2":
 			System.out.print("Enter the keyword you would like to search: ");
-			List<Film> films = db.findFilmByKeyword(input.nextLine());
-			if (films.size() == 0) {
+			List<Film> caseTwoFilmArr = db.findFilmByKeyword(input.nextLine());
+			if (caseTwoFilmArr.size() == 0) {
 				System.out.println("\nNo films match that keyword.\n");
 			} else {
-				System.out.println("\n" + films.size() + " films found that matched your keyword.\n");
-				for (Film aFilm : films) {
-					System.out.println(aFilm.toStringWithActors() + "\n");
+				System.out.println("\n" + caseTwoFilmArr.size() + " films matched your keyword.\n");
+				for (Film caseTwoFilm : caseTwoFilmArr) {
+					System.out.println(caseTwoFilm + "\n");
+					System.out.println("Actors:");
+					for (Actor caseTwoActor : caseTwoFilm.getActors()) {
+						System.out.println(caseTwoActor.toStringIndented());
+					}
+					System.out.println();
 				}
 			}
 			break;
 		case "3":
+			System.out.print("Enter the actor's id: ");
+			Actor caseThreeActor = db.findActorById(input.nextInt());
+			input.nextLine();
+			if (caseThreeActor == null) {
+				System.out.println("\nThat actor does not exist\n");
+			} else {
+				System.out.println("\n" + caseThreeActor + "\n");
+				System.out.println("Films:");
+				for (Film caseThreeFilm : caseThreeActor.getFilms()) {
+					System.out.println(caseThreeFilm.toStringIndented() + "\n");
+				}
+			}
+			break;
+		case "4":
+			System.out.print("Enter the name you would like to search: ");
+			List<Actor> caseFourActorArr = db.findActorsByName(input.nextLine());
+			if (caseFourActorArr.size() == 0) {
+				System.out.println("\nNo actors with that name.\n");
+			} else {
+				System.out.println("\n" + caseFourActorArr.size() + " actors with that name.\n");
+				for (Actor caseFourActor : caseFourActorArr) {
+					System.out.println(caseFourActor + "\n");
+					System.out.println("Films:");
+					for (Film caseFourFilm : caseFourActor.getFilms()) {
+						System.out.println(caseFourFilm.toStringIndented() + "\n");
+					}
+				}
+			}
+			break;
+		case "5":
 			stillRunning = false;
 			System.out.println("Thanks for using the Film Query App");
 			break;
-//		case "4":
-//			System.out.print("Enter the actor's id: ");
-//			Actor actor = db.findActorById(input.nextInt());
-//			input.nextLine();
-//			if (actor == null) {
-//				System.out.println("\nThat actor does not exist\n");
-//			} else {
-//				System.out.println("\n" + actor.toStringWithFilms() + "\n");
-//			}
-//			break;
 		default:
 			System.out.println("Invalid Entry. Please Enter A Number from 1-3.\n");
 			break;

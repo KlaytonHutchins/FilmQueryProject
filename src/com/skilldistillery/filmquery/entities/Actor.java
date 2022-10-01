@@ -69,15 +69,11 @@ public class Actor {
 	
 	@Override
 	public String toString() {
-		return "ACTOR ID: " + id + "\tName: " + firstName + " " + lastName;
+		return "Actor id: " + id + "\tName: " + firstName + " " + lastName;
 	}
 	
-	public String toStringWithFilms() {
-		String filmString = "";
-		for (Film film : this.films) {
-			filmString += "" + film + "";
-		}
-		return "ACTOR ID: " + id + "\tName: " + firstName + " " + lastName + "\nFilms:\n" + filmString;
+	public String toStringIndented() {
+		return "\tActor id: " + id + "\tName: " + firstName + " " + lastName;
 	}
 	
 }
