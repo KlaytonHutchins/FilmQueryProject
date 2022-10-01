@@ -23,24 +23,25 @@ public class Film {
 	public Film() {
 	}
 
-	public Film(String title, int releaseYear, String rating, String description) {
+	public Film(String title, int releaseYear, String rating, String description, String language) {
 		this.title = title;
 		this.description = description;
 		this.releaseYear = releaseYear;
 		this.rating = rating;
+		this.language = language;
 	}
 
-	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
-		this(title, releaseYear, rating, description);
-		this.id = id;
-		this.languageId = languageId;
-		this.rentalDuration = rentalDuration;
-		this.rentalRate = rentalRate;
-		this.length = length;
-		this.replacementCost = replacementCost;
-		this.specialFeatures = specialFeatures;
-	}
+//	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
+//			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
+//		this(title, releaseYear, rating, description);
+//		this.id = id;
+//		this.languageId = languageId;
+//		this.rentalDuration = rentalDuration;
+//		this.rentalRate = rentalRate;
+//		this.length = length;
+//		this.replacementCost = replacementCost;
+//		this.specialFeatures = specialFeatures;
+//	}
 
 	public int getId() {
 		return id;
@@ -164,7 +165,7 @@ public class Film {
 	@Override
 	public String toString() {
 		return "FILM:\nTitle: " + title + "\nRelease Year: " + releaseYear + "\nRating: " + rating + "\nDescription: "
-				+ description;
+				+ description + "\nLanguage: " + language;
 //		return "FILM:\nID: " + id + "\nTitle: " + title + "\nDescription: " + description + "\nRelease Year: " + releaseYear
 //				+ "\nLanguage Id: " + languageId + "\nRental Duration: " + rentalDuration + "\nRental Rate: " + rentalRate
 //				+ "\nLength: " + length + "\nReplacement Cost: " + replacementCost + "\nRating: " + rating

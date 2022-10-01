@@ -36,7 +36,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		ResultSet filmResult = stmt.executeQuery();
 		if (filmResult.next()) {
 			film = new Film(filmResult.getString("title"), filmResult.getInt("release_year"),
-					filmResult.getString("rating"), filmResult.getString("description"));
+					filmResult.getString("rating"), filmResult.getString("description"), determineLanguage(filmResult.getInt("language_id")));
 //			film = new Film(filmResult.getInt("id"), filmResult.getString("title"),
 //					filmResult.getString("description"), filmResult.getInt("release_year"),
 //					filmResult.getInt("language_id"), filmResult.getInt("rental_duration"),
@@ -63,7 +63,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		if (filmResult.next()) {
 			while (filmResult.next()) {
 				film = new Film(filmResult.getString("title"), filmResult.getInt("release_year"),
-						filmResult.getString("rating"), filmResult.getString("description"));
+						filmResult.getString("rating"), filmResult.getString("description"), determineLanguage(filmResult.getInt("language_id")));
 //				film = new Film(filmResult.getInt("id"), filmResult.getString("title"),
 //						filmResult.getString("description"), filmResult.getInt("release_year"),
 //						filmResult.getInt("language_id"), filmResult.getInt("rental_duration"),
@@ -126,16 +126,33 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		stmt.setInt(1, actorId);
 		ResultSet filmsResult = stmt.executeQuery();
 		if (filmsResult.next()) {
-			film = new Film(filmsResult.getInt("id"), filmsResult.getString("title"),
-					filmsResult.getString("description"), filmsResult.getInt("release_year"),
-					filmsResult.getInt("language_id"), filmsResult.getInt("rental_duration"),
-					filmsResult.getDouble("rental_rate"), filmsResult.getInt("length"),
-					filmsResult.getDouble("replacement_cost"), filmsResult.getString("rating"),
-					filmsResult.getString("special_features"));
+//			film = new Film(filmsResult.getInt("id"), filmsResult.getString("title"),
+//					filmsResult.getString("description"), filmsResult.getInt("release_year"),
+//					filmsResult.getInt("language_id"), filmsResult.getInt("rental_duration"),
+//					filmsResult.getDouble("rental_rate"), filmsResult.getInt("length"),
+//					filmsResult.getDouble("replacement_cost"), filmsResult.getString("rating"),
+//					filmsResult.getString("special_features"));
 			films.add(film);
 		}
 		conn.close();
 		return films;
 	}
-
+	
+	private String determineLanguage(int langId) throws SQLException {
+		String language = "";
+		String user = "student";
+		String pass = "student";
+		Connection conn = DriverManager.getConnection(URL, user, pass);
+		String sql = "SELECT name FROM language WHERE id = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, langId);
+		ResultSet langResult = stmt.executeQuery();
+		if (langResult.next()) {
+			language = langResult.getString("name");
+		}
+		conn.close();
+		return language;
+	}
+	
+	
 }

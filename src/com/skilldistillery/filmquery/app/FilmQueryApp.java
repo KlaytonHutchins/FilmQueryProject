@@ -40,6 +40,7 @@ public class FilmQueryApp {
 			try {
 				startUserInterface(input);
 			} catch (SQLException e) {
+				e.printStackTrace();
 				System.err.println("Something went wrong...");
 			}
 		}
@@ -59,16 +60,22 @@ public class FilmQueryApp {
 			System.out.print("Enter the id you would like to search: ");
 			Film film = db.findFilmById(input.nextInt());
 			input.nextLine();
-			System.out.println("\n" + film + "\n");
+			if (film == null) {
+				System.out.println("\nThat film does not exist\n");
+			} else {
+				System.out.println("\n" + film + "\n");
+			}
 			break;
 		case "2":
 			System.out.print("Enter the keyword you would like to search: ");
 			List<Film> films = db.findFilmByKeyword(input.nextLine());
-			System.out.println("\n" + films.size() + " films found that matched your keyword.\n");
-			
-			for (Film aFilm : films) {
-				System.out.println(aFilm);
-				System.out.println();
+			if (films.size() == 0) {
+				System.out.println("\nNo films match that keyword.\n");
+			} else {
+				System.out.println("\n" + films.size() + " films found that matched your keyword.\n");
+				for (Film aFilm : films) {
+					System.out.println(aFilm + "\n");
+				}
 			}
 			break;
 		case "3":
