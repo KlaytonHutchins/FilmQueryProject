@@ -164,6 +164,15 @@ public class Film {
 
 	@Override
 	public String toString() {
+		return "FILM:\nTitle: " + title + "\nRelease Year: " + releaseYear + "\nRating: " + rating + "\nDescription: "
+				+ description + "\nLanguage: " + language;
+//		return "FILM:\nID: " + id + "\nTitle: " + title + "\nDescription: " + description + "\nRelease Year: " + releaseYear
+//				+ "\nLanguage Id: " + languageId + "\nRental Duration: " + rentalDuration + "\nRental Rate: " + rentalRate
+//				+ "\nLength: " + length + "\nReplacement Cost: " + replacementCost + "\nRating: " + rating
+//				+ "\nSpecial Features: " + specialFeatures;
+	}
+	
+	public String toStringWithActors() {
 		String actorString = "";
 		for (Actor actor : this.actors) {
 			actorString += "\t" + actor + "\n";
@@ -175,5 +184,5 @@ public class Film {
 //				+ "\nLength: " + length + "\nReplacement Cost: " + replacementCost + "\nRating: " + rating
 //				+ "\nSpecial Features: " + specialFeatures;
 	}
-
+	
 }

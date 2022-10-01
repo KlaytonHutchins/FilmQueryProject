@@ -72,4 +72,12 @@ public class Actor {
 		return "ACTOR ID: " + id + "\tName: " + firstName + " " + lastName;
 	}
 	
+	public String toStringWithFilms() {
+		String filmString = "";
+		for (Film film : this.films) {
+			filmString += "" + film + "";
+		}
+		return "ACTOR ID: " + id + "\tName: " + firstName + " " + lastName + "\nFilms:\n" + filmString;
+	}
+	
 }

@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
+import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
@@ -63,7 +64,7 @@ public class FilmQueryApp {
 			if (film == null) {
 				System.out.println("\nThat film does not exist\n");
 			} else {
-				System.out.println("\n" + film + "\n");
+				System.out.println("\n" + film.toStringWithActors() + "\n");
 			}
 			break;
 		case "2":
@@ -74,7 +75,7 @@ public class FilmQueryApp {
 			} else {
 				System.out.println("\n" + films.size() + " films found that matched your keyword.\n");
 				for (Film aFilm : films) {
-					System.out.println(aFilm + "\n");
+					System.out.println(aFilm.toStringWithActors() + "\n");
 				}
 			}
 			break;
@@ -82,7 +83,18 @@ public class FilmQueryApp {
 			stillRunning = false;
 			System.out.println("Thanks for using the Film Query App");
 			break;
+//		case "4":
+//			System.out.print("Enter the actor's id: ");
+//			Actor actor = db.findActorById(input.nextInt());
+//			input.nextLine();
+//			if (actor == null) {
+//				System.out.println("\nThat actor does not exist\n");
+//			} else {
+//				System.out.println("\n" + actor.toStringWithFilms() + "\n");
+//			}
+//			break;
 		default:
+			System.out.println("Invalid Entry. Please Enter A Number from 1-3.\n");
 			break;
 		}
 
