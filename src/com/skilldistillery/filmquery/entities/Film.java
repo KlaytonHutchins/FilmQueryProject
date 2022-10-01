@@ -164,8 +164,12 @@ public class Film {
 
 	@Override
 	public String toString() {
+		String actorString = "";
+		for (Actor actor : this.actors) {
+			actorString += "\t" + actor + "\n";
+		}
 		return "FILM:\nTitle: " + title + "\nRelease Year: " + releaseYear + "\nRating: " + rating + "\nDescription: "
-				+ description + "\nLanguage: " + language;
+				+ description + "\nLanguage: " + language + "\nActors:\n" + actorString;
 //		return "FILM:\nID: " + id + "\nTitle: " + title + "\nDescription: " + description + "\nRelease Year: " + releaseYear
 //				+ "\nLanguage Id: " + languageId + "\nRental Duration: " + rentalDuration + "\nRental Rate: " + rentalRate
 //				+ "\nLength: " + length + "\nReplacement Cost: " + replacementCost + "\nRating: " + rating
