@@ -16,27 +16,12 @@ public class FilmQueryApp {
 
 	public static void main(String[] args) {
 		FilmQueryApp app = new FilmQueryApp();
-//		try {
-//			app.test();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		app.launch();
-	}
-
-	private void test() throws SQLException {
-		List<Film> films = db.findFilmByKeyword("the");
-//    Actor actor = db.findActorById(3);
-		for (Film film : films) {
-			System.out.println(film);
-
-		}
 	}
 
 	private void launch() {
 		Scanner input = new Scanner(System.in);
-		System.out.println("Welcome to the Film Query App");
+		System.out.println("Welcome to Klayton's Film Query App");
 		while (stillRunning) {
 			try {
 				startUserInterface(input);
@@ -61,8 +46,7 @@ public class FilmQueryApp {
 		switch (menuSelection) {
 		case "1":
 			System.out.print("Enter the id you would like to search: ");
-			Film caseOneFilm = db.findFilmById(input.nextInt());
-			input.nextLine();
+			Film caseOneFilm = db.findFilmById(Integer.parseInt(input.nextLine()));
 			if (caseOneFilm == null) {
 				System.out.println("\nThat film does not exist\n");
 			} else {
@@ -70,6 +54,19 @@ public class FilmQueryApp {
 				System.out.println("Actors:");
 				for (Actor caseOneActor : caseOneFilm.getActors()) {
 					System.out.println(caseOneActor.toStringIndented());
+				}
+				System.out.print(
+						"\nWould you like to see more details about this movie (1) or return to the main menu (2)? ");
+				if (input.nextLine().equals("1")) {
+					System.out.println("\nId: " + caseOneFilm.getId() + "\n" + caseOneFilm + "\nRental Duration: "
+							+ caseOneFilm.getRentalDuration() + "\nRental Rate: " + caseOneFilm.getRentalRate()
+							+ "\nLength: " + caseOneFilm.getLength() + "\nReplacement Cost: "
+							+ caseOneFilm.getReplacementCost() + "\nSpecial Features: "
+							+ caseOneFilm.getSpecialFeatures());
+					System.out.println("Actors:");
+					for (Actor caseOneActor : caseOneFilm.getActors()) {
+						System.out.println(caseOneActor.toStringIndented());
+					}
 				}
 				System.out.println();
 			}
@@ -82,18 +79,34 @@ public class FilmQueryApp {
 			} else {
 				System.out.println("\n" + caseTwoFilmArr.size() + " films matched your keyword.\n");
 				for (Film caseTwoFilm : caseTwoFilmArr) {
-					System.out.println(caseTwoFilm + "\n");
+					System.out.println(caseTwoFilm);
 					System.out.println("Actors:");
 					for (Actor caseTwoActor : caseTwoFilm.getActors()) {
 						System.out.println(caseTwoActor.toStringIndented());
 					}
 					System.out.println();
 				}
+				System.out.print(
+						"\nWould you like to see more details about this movie (1) or return to the main menu (2)? ");
+				if (input.nextLine().equals("1")) {
+					for (Film caseTwoInnerFilm : caseTwoFilmArr) {
+						System.out.println("\nId: " + caseTwoInnerFilm.getId() + "\n" + caseTwoInnerFilm
+								+ "\nRental Duration: " + caseTwoInnerFilm.getRentalDuration() + "\nRental Rate: "
+								+ caseTwoInnerFilm.getRentalRate() + "\nLength: " + caseTwoInnerFilm.getLength()
+								+ "\nReplacement Cost: " + caseTwoInnerFilm.getReplacementCost()
+								+ "\nSpecial Features: " + caseTwoInnerFilm.getSpecialFeatures());
+						System.out.println("Actors:");
+						for (Actor caseTwoInnerActor : caseTwoInnerFilm.getActors()) {
+							System.out.println(caseTwoInnerActor.toStringIndented());
+						}
+					}
+				}
+				System.out.println();
 			}
 			break;
 		case "3":
 			System.out.print("Enter the actor's id: ");
-			Actor caseThreeActor = db.findActorById(input.nextInt());
+			Actor caseThreeActor = db.findActorById(Integer.parseInt(input.nextLine()));
 			input.nextLine();
 			if (caseThreeActor == null) {
 				System.out.println("\nThat actor does not exist\n");
@@ -123,10 +136,10 @@ public class FilmQueryApp {
 			break;
 		case "5":
 			stillRunning = false;
-			System.out.println("Thanks for using the Film Query App");
+			System.out.println("Thanks for using Klayton's Film Query App");
 			break;
 		default:
-			System.out.println("Invalid Entry. Please Enter A Number from 1-3.\n");
+			System.out.println("Invalid Entry. Please Enter A Number from 1-5.\n");
 			break;
 		}
 

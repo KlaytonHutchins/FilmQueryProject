@@ -35,15 +35,12 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		stmt.setInt(1, filmId);
 		ResultSet filmResult = stmt.executeQuery();
 		if (filmResult.next()) {
-			film = new Film(filmResult.getString("title"), filmResult.getInt("release_year"),
-					filmResult.getString("rating"), filmResult.getString("description"),
-					determineLanguage(filmResult.getInt("language_id")));
-//			film = new Film(filmResult.getInt("id"), filmResult.getString("title"),
-//					filmResult.getString("description"), filmResult.getInt("release_year"),
-//					filmResult.getInt("language_id"), filmResult.getInt("rental_duration"),
-//					filmResult.getDouble("rental_rate"), filmResult.getInt("length"),
-//					filmResult.getDouble("replacement_cost"), filmResult.getString("rating"),
-//					filmResult.getString("special_features"));
+			film = new Film(filmResult.getInt("id"), filmResult.getString("title"),
+					filmResult.getString("description"), filmResult.getInt("release_year"),
+					determineLanguage(filmResult.getInt("language_id")), filmResult.getInt("rental_duration"),
+					filmResult.getDouble("rental_rate"), filmResult.getInt("length"),
+					filmResult.getDouble("replacement_cost"), filmResult.getString("rating"),
+					filmResult.getString("special_features"));
 			film.setActors(findActorsByFilmId(filmResult.getInt("id")));
 		}
 		conn.close();
@@ -62,15 +59,12 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		stmt.setString(2, "%" + keyword + "%");
 		ResultSet filmResult = stmt.executeQuery();
 		while (filmResult.next()) {
-			film = new Film(filmResult.getString("title"), filmResult.getInt("release_year"),
-					filmResult.getString("rating"), filmResult.getString("description"),
-					determineLanguage(filmResult.getInt("language_id")));
-//				film = new Film(filmResult.getInt("id"), filmResult.getString("title"),
-//						filmResult.getString("description"), filmResult.getInt("release_year"),
-//						filmResult.getInt("language_id"), filmResult.getInt("rental_duration"),
-//						filmResult.getDouble("rental_rate"), filmResult.getInt("length"),
-//						filmResult.getDouble("replacement_cost"), filmResult.getString("rating"),
-//						filmResult.getString("special_features"));
+				film = new Film(filmResult.getInt("id"), filmResult.getString("title"),
+						filmResult.getString("description"), filmResult.getInt("release_year"),
+						determineLanguage(filmResult.getInt("language_id")), filmResult.getInt("rental_duration"),
+						filmResult.getDouble("rental_rate"), filmResult.getInt("length"),
+						filmResult.getDouble("replacement_cost"), filmResult.getString("rating"),
+						filmResult.getString("special_features"));
 			film.setActors(findActorsByFilmId(filmResult.getInt("id")));
 			films.add(film);
 		}
@@ -147,15 +141,12 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		stmt.setInt(1, actorId);
 		ResultSet filmsResult = stmt.executeQuery();
 		while (filmsResult.next()) {
-			film = new Film(filmsResult.getString("title"), filmsResult.getInt("release_year"),
-					filmsResult.getString("rating"), filmsResult.getString("description"),
-					determineLanguage(filmsResult.getInt("language_id")));
-//			film = new Film(filmsResult.getInt("id"), filmsResult.getString("title"),
-//					filmsResult.getString("description"), filmsResult.getInt("release_year"),
-//					filmsResult.getInt("language_id"), filmsResult.getInt("rental_duration"),
-//					filmsResult.getDouble("rental_rate"), filmsResult.getInt("length"),
-//					filmsResult.getDouble("replacement_cost"), filmsResult.getString("rating"),
-//					filmsResult.getString("special_features"));
+			film = new Film(filmsResult.getInt("id"), filmsResult.getString("title"),
+					filmsResult.getString("description"), filmsResult.getInt("release_year"),
+					determineLanguage(filmsResult.getInt("language_id")), filmsResult.getInt("rental_duration"),
+					filmsResult.getDouble("rental_rate"), filmsResult.getInt("length"),
+					filmsResult.getDouble("replacement_cost"), filmsResult.getString("rating"),
+					filmsResult.getString("special_features"));
 			films.add(film);
 		}
 		conn.close();

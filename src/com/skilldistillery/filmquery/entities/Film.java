@@ -31,17 +31,17 @@ public class Film {
 		this.language = language;
 	}
 
-//	public Film(int id, String title, String description, int releaseYear, int languageId, int rentalDuration,
-//			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
-//		this(title, releaseYear, rating, description);
-//		this.id = id;
-//		this.languageId = languageId;
-//		this.rentalDuration = rentalDuration;
-//		this.rentalRate = rentalRate;
-//		this.length = length;
-//		this.replacementCost = replacementCost;
-//		this.specialFeatures = specialFeatures;
-//	}
+	public Film(int id, String title, String description, int releaseYear, String language, int rentalDuration,
+			double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
+		this(title, releaseYear, rating, description, language);
+		this.id = id;
+		this.language = language;
+		this.rentalDuration = rentalDuration;
+		this.rentalRate = rentalRate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.specialFeatures = specialFeatures;
+	}
 
 	public int getId() {
 		return id;
