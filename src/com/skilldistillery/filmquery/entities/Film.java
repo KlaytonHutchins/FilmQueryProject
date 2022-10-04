@@ -172,5 +172,11 @@ public class Film {
 		return "\tTitle: " + title + "\n\tRelease Year: " + releaseYear + "\n\tRating: " + rating + "\n\tDescription: "
 				+ description + "\n\tLanguage: " + language;
 	}
-	
+	public String toStringMoreInfo() {
+		return "\nId: " + id + "\n" + this
+		+ "\nRental Duration: " + rentalDuration + "\nRental Rate: "
+		+ rentalRate + "\nLength: " + length
+		+ "\nReplacement Cost: " + replacementCost
+		+ "\nSpecial Features: " + specialFeatures;
+	}
 }

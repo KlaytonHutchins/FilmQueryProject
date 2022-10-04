@@ -43,6 +43,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 					filmResult.getString("special_features"));
 			film.setActors(findActorsByFilmId(filmResult.getInt("id")));
 		}
+		filmResult.close();
+		stmt.close();
 		conn.close();
 		return film;
 	}
@@ -68,6 +70,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			film.setActors(findActorsByFilmId(filmResult.getInt("id")));
 			films.add(film);
 		}
+		filmResult.close();
+		stmt.close();
 		conn.close();
 		return films;
 	}
@@ -86,6 +90,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 					actorResult.getString("last_name"));
 			actor.setFilms(findFilmsByActorId(actorResult.getInt("id")));
 		}
+		actorResult.close();
+		stmt.close();
 		conn.close();
 		return actor;
 	}
@@ -107,6 +113,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			actor.setFilms(findFilmsByActorId(actorResult.getInt("id")));
 			actors.add(actor);
 		}
+		actorResult.close();
+		stmt.close();
 		conn.close();
 		return actors;
 	}
@@ -126,6 +134,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 					actorsResult.getString("last_name"));
 			actors.add(actor);
 		}
+		actorsResult.close();
+		stmt.close();
 		conn.close();
 		return actors;
 	}
@@ -149,6 +159,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 					filmsResult.getString("special_features"));
 			films.add(film);
 		}
+		filmsResult.close();
+		stmt.close();
 		conn.close();
 		return films;
 	}
@@ -165,6 +177,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		if (langResult.next()) {
 			language = langResult.getString("name");
 		}
+		langResult.close();
+		stmt.close();
 		conn.close();
 		return language;
 	}

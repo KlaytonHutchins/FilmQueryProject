@@ -58,11 +58,7 @@ public class FilmQueryApp {
 				System.out.print(
 						"\nWould you like to see more details about this movie (1) or return to the main menu (2)? ");
 				if (input.nextLine().equals("1")) {
-					System.out.println("\nId: " + caseOneFilm.getId() + "\n" + caseOneFilm + "\nRental Duration: "
-							+ caseOneFilm.getRentalDuration() + "\nRental Rate: " + caseOneFilm.getRentalRate()
-							+ "\nLength: " + caseOneFilm.getLength() + "\nReplacement Cost: "
-							+ caseOneFilm.getReplacementCost() + "\nSpecial Features: "
-							+ caseOneFilm.getSpecialFeatures());
+					System.out.println(caseOneFilm.toStringMoreInfo());
 					System.out.println("Actors:");
 					for (Actor caseOneActor : caseOneFilm.getActors()) {
 						System.out.println(caseOneActor.toStringIndented());
@@ -90,11 +86,7 @@ public class FilmQueryApp {
 						"\nWould you like to see more details about this movie (1) or return to the main menu (2)? ");
 				if (input.nextLine().equals("1")) {
 					for (Film caseTwoInnerFilm : caseTwoFilmArr) {
-						System.out.println("\nId: " + caseTwoInnerFilm.getId() + "\n" + caseTwoInnerFilm
-								+ "\nRental Duration: " + caseTwoInnerFilm.getRentalDuration() + "\nRental Rate: "
-								+ caseTwoInnerFilm.getRentalRate() + "\nLength: " + caseTwoInnerFilm.getLength()
-								+ "\nReplacement Cost: " + caseTwoInnerFilm.getReplacementCost()
-								+ "\nSpecial Features: " + caseTwoInnerFilm.getSpecialFeatures());
+						System.out.println(caseTwoInnerFilm.toStringMoreInfo());
 						System.out.println("Actors:");
 						for (Actor caseTwoInnerActor : caseTwoInnerFilm.getActors()) {
 							System.out.println(caseTwoInnerActor.toStringIndented());
